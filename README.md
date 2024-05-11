@@ -11,7 +11,7 @@
 
 | Command | Description |
 | ---------- | ---------- |
-| `make` or `make main` | Creates and runs an executable called `main` that runs all of the required 7 functions* on a certain graph. The graph (or rather the adjacency matrix) is in main.cpp, and can be changed to see how it affects the outputs of the functions.|
+| `make` or `make main` | Creates and runs an executable called `main` that runs all of the required 7 functions* on a certain graph. Also performs some arithmetic and conditional on graphs. The graph (or rather the adjacency matrix) is in main.cpp, and can be changed to see how it affects the outputs of the functions.|
 | `make tests` | Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and all of the arithmetic and conditional operators** on graphs. Prints a summary of the tests. |
 | `make clean` | Deletes all .o files and executables. |
 
