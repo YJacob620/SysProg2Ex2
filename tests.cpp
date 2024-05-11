@@ -445,7 +445,7 @@ TEST_CASE("isContainsCycle") {
 }
 
 TEST_CASE("Addition & Conditional Operations") {
-    Graph g1, g2, g3, g4;
+    Graph g1, g2, g3;
     vector<vector<G>> v;
     CHECK(g1 == g2);
     CHECK(!(g1 != g2));
@@ -459,7 +459,6 @@ TEST_CASE("Addition & Conditional Operations") {
     CHECK(g1.isUpdated());
     g1 += g1;
     CHECK(!(g1.isUpdated()));
-
     g1.loadGraph(v);
     v = {
         {0,1,INF},
@@ -488,15 +487,33 @@ TEST_CASE("Addition & Conditional Operations") {
     CHECK(g1 - -g2 == g3);
     CHECK(g3 * 5 == (g1 + g2) * 5);
     CHECK(g1 + g1 + g2 + g2 == g3 + g3);
-    // CHECK(g1 == g3 - g2);
-    g4 = g3;
-    CHECK(++(g1 + g2) == ++g4);
-    g4 = g3;
-    CHECK((g1 + g2)++ != ++g4);
-    g4 = g3;
-    CHECK(++(g1 + g2) != g4++);
-    g4 = g3;
-    CHECK((g1 + g2)++ == g4++);
+
+    v = {
+        {0,INF,INF,INF,INF},
+        {INF,0,INF,0,INF},
+        {INF,INF,0,INF,INF},
+        {INF,INF,INF,0,INF},
+        {INF,INF,INF,INF,0}
+    };
+    g1.loadGraph(v);
+    CHECK((g1++).get_matrix() == v);
+    CHECK((g1).get_matrix() != v);
+    g1--;
+    CHECK((g1--).get_matrix() == v);
+    CHECK((g1).get_matrix() != v);
+    ++g1;
+    CHECK((g1).get_matrix() == v);
+    v = {
+        {0,INF,INF,INF,INF},
+        {INF,0,INF,1,INF},
+        {INF,INF,0,INF,INF},
+        {INF,INF,INF,0,INF},
+        {INF,INF,INF,INF,0}
+    };
+    CHECK((++g1).get_matrix() == v);
+    CHECK((++g1).get_matrix() != v);
+    CHECK((--g1).get_matrix() == v);
+    CHECK((--g1).get_matrix() != v);
 
     v = {
         {0,INF,0},
@@ -543,6 +560,10 @@ TEST_CASE("Addition & Conditional Operations") {
     CHECK_THROWS(g2 + g1);
     CHECK_THROWS(g1 - g2);
     CHECK_THROWS(g2 - g1);
+
+    ++g2;
+    CHECK(!g2.isUpdated());
+    CHECK(g1 > g2);
 }
 
 TEST_CASE("Multiplication Operations") {

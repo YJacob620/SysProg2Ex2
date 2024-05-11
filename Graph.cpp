@@ -39,8 +39,9 @@ namespace ex2 {
         return false;
     }
 
-    /// @brief Prints a matrix.
+    /// @brief Prints a matrix into an output stream.
     /// @param mat Matrix to print.
+    /// @param os Output stream to print into.
     void printMatrix(const vector<vector<G>>& mat, ostream& os) {
         for (const vector<G>& vec : mat) {
             for (G element : vec) {
@@ -248,8 +249,12 @@ namespace ex2 {
         auto rows = this->matrix.size();
         Graph tmp;
         tmp.matrix = vector<vector<G>>(rows, vector<G>(rows, 1));
-        for (int i = 0; i < rows;i++) {
-            tmp.matrix[i][i] = 0;
+        for (int i = 0; i < rows;++i) {
+            for (int j = 0; j < rows;++j) {
+                if (this->matrix[i][j] == INF || i == j) {
+                    tmp.matrix[i][j] = INF;
+                }
+            }
         }
         *this += (tmp);
         return *this;
@@ -259,8 +264,12 @@ namespace ex2 {
         auto rows = this->matrix.size();
         Graph tmp;
         tmp.matrix = vector<vector<G>>(rows, vector<G>(rows, -1));
-        for (int i = 0; i < rows;i++) {
-            tmp.matrix[i][i] = 0;
+        for (int i = 0; i < rows;++i) {
+            for (int j = 0; j < rows;++j) {
+                if (this->matrix[i][j] == INF || i == j) {
+                    tmp.matrix[i][j] = INF;
+                }
+            }
         }
         *this += (tmp);
         return *this;
