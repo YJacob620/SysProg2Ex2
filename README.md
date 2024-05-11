@@ -20,6 +20,7 @@
 `g.loadGraph(), g.printGraph(), isConnected(g), shortestPath(g, src, dest), isContainsCycle(g), isBipartite(g), negativeCycle(g)`
 
 **ה-overloaded operators הם (19 סה"כ):
+
 '<', '>', '==', '!=', '<=', '>=', '+', '-', '+' (urinary), '-' (urinary), '+=', '-=', '++Graph', 'Graph++', '--Graph', 'Graph--', '* scalar', '* Graph', '<< Graph' (output).
 
 ## מידע נוסף על הקוד והמימוש
