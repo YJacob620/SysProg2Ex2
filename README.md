@@ -12,14 +12,18 @@
 | Command | Description |
 | ---------- | ---------- |
 | `make` or `make main` | Creates and runs an executable called `main` that runs all of the required 7 functions* on a certain graph. The graph (or rather the adjacency matrix) is in main.cpp, and can be changed to see how it affects the outputs of the functions.|
-| `make tests` | Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and all of the arithmetic and conditional operators on graphs. Prints a summary of the tests. |
+| `make tests` | Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and all of the arithmetic and conditional operators** on graphs. Prints a summary of the tests. |
 | `make clean` | Deletes all .o files and executables. |
 
 *תזכורת: 7 הפונקציות הנחוצות (למטלה) הן: 
 
 `g.loadGraph(), g.printGraph(), isConnected(g), shortestPath(g, src, dest), isContainsCycle(g), isBipartite(g), negativeCycle(g)`
+
+**ה-overloaded operators הם (19 סה"כ):
+'<', '>', '==', '!=', '<=', '>=', '+', '-', '+' (urinary), '-' (urinary), '+=', '-=', '++Graph', 'Graph++', '--Graph', 'Graph--', '* scalar', '* Graph', '<< Graph' (output).
+
 ## מידע נוסף על הקוד והמימוש
-1) במימוש זה לא מתקבלים גרפים שבהם צלעות מקודקוד לעצמו (ייזרקו על כך שגיאות מתאימות).
+1) במימוש זה לא מתקבלים גרפים שבהם צלעות מקודקוד לעצמו (ייזרקו על כך שגיאות מתאימות). עקב כך, כפל בין גרפים ייתן גרף שמטריצת השכנויות שלו היא מכפלה של המטריצות המייצגות של שני הגרפים - אך שאלכסונה הראשי מורכב מאפסים. 
 2) כל צלע בגרף נחשבת לממושקלת, וצלעות יכולות להיות בעלי משקלים חיוביים, שליליים, או 0, כאשר אי-קיום צלע בין שני קודקודים יזוהה על ידי הערך הקבוע `INF` במקום המתאים במטריצת השכנויות של הגרף (דוגמה למטריצת שכנויות תקינה קיימת ב-`main.cpp`).
 3) גרפים מכוונים שבהם לכל צלע קיימת צלע לכיוון השני עם אותו משקל ייחשבו כגרפים לא-מכוונים.
 4) חלק מהאלגוריתמים מחזירים משתנה בוליאני בלבד, בעוד שמידע נוסף אודות התוצאות שלהם מודפס ב-standard output stream (ב-`std::cout`). כמובן שכל המידע שמודפס יכול גם להיות מוחזר בדרך כלשהי, אך לדעתי זאת הדרך הפשוטה והיעילה ביותר להחזיר את מידע זה.
