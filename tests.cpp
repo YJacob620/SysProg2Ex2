@@ -562,6 +562,7 @@ TEST_CASE("Multiplication Operations") {
     };
     g2.loadGraph(v);
     CHECK_THROWS(g1 * g2);
+    CHECK_THROWS(g2 * g1);
     CHECK(g1 * g1 < g1);
 
     v = {
